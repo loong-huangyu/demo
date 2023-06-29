@@ -1,0 +1,48 @@
+package leetcode.editor.cn;
+
+class LongestSubstringWithoutRepeatingCharacters {
+
+    public static void main(String[] args) {
+        Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
+    }
+
+    class Solution {
+
+        public int lengthOfLongestSubstring(String s) {
+            char[] chars = s.toCharArray();
+            if (chars.length == 1) {
+                return 1;
+            }
+            int length = 0;
+            int i, j;
+            for (i = 0; i < chars.length; i++) {
+                for (j = i + 1; j < chars.length; j++) {
+                    if (checkString(i, j, s, chars[j])) {
+                        if (length < (j - i)) {
+                            length = j - i;
+                        }
+                        break;
+                    } else if (j == (chars.length - 1)) {
+                        if (length < (j - i) + 1) {
+                            length = j - i + 1;
+                        }
+                        break;
+                    }
+                }
+            }
+            return length;
+        }
+
+        private boolean checkString(int i, int j, String s, char aChar) {
+            String now = s.substring(i, j);
+            return now.contains(String.valueOf(aChar));
+        }
+
+    }
+
+}
+
+//total_correct:0
+//compile_error:Line 1: error: class, interface, enum, or record expected [in LongestSubstringWithoutRepeatingCharacters.java]
+package leetcode.editor.cn;
+^

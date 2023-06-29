@@ -1,0 +1,66 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /cti
+
+spring:
+  application:
+    name: demo
+  data:
+    mongodb:
+      database: robot
+      host: 127.0.0.1
+      port: 27017
+      username: root
+      password: root
+  #minio接受的文件大小，解决上传报错
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cache:
+    type: redis
+    cache-names: floor,node,building,hub
+    redis:
+      cache-null-values: false
+      key-prefix: demo-
+      time-to-live: 86400000
+      use-key-prefix: true
+  redis:
+    host: 192.168.14.179
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    password:
+    port: 6378
+    timeout: 5000
+
+
+#微信配置
+pay:
+  wechat:
+    mchId: "1549401201"
+    mchSerialNo: "498842BB7A4223FD5E7FBA43A8A4E4E3621BC307"
+    apiV3Key: "GHigmeGUc0cWjuocG6cuPJylVv1tHXyf"
+    appId: "wxad6c8725452a6a1a"
+    callbackUrl: "https://development.api.ctirobot.com/api/park/v1/wechat/callback"
+    privateKeyAddress: "pay/wechat/apiclient_key.pem"
+    prepayUrl: "https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi"
+    refundUrl: "https://api.mch.weixin.qq.com/v3/refund/domestic/refunds"
+    findOrderUrl: "https://api.mch.weixin.qq.com/v3/pay/transactions/id/"
+    closeOrderHeadUrl: "https://api.mch.weixin.qq.com/v3/pay/transactions/out-trade-no/"
+    closeOrderTailUrl: "/close"
+
+#minio配置
+minio:
+  accessKeyId: admin
+  accessKeySecret: admin
+  bucketName: cti-scheduling-ota
+  endpoint: http://minio.com:9100
+  prefix: staging/app/
+  readEndPoint: http://minio.com:9100

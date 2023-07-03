@@ -43,7 +43,7 @@ public class TestHttpUtils {
     public void testHttp() {
 //        Console.log("login:{}", systemLogin());
 //        Console.log("systemUser:{}", getSystemUserInfo());
-        Console.log("menuPage:{}", getMenuPage());
+        //Console.log("menuPage:{}", getMenuPage());
 //        Console.log("rolePage:{}", getRolePage());
 //        Console.log("menuPermission:{}", getMenuPermission());
     }
@@ -106,4 +106,5 @@ public class TestHttpUtils {
     public void after() {
         Console.log("结束测试");
     }
+
 }
